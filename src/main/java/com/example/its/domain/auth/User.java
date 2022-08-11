@@ -1,0 +1,28 @@
+package com.example.its.domain.auth;
+
+import javax.validation.constraints.NotBlank;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class User {
+	
+	@NotBlank
+	private String username;
+	@NotBlank
+	private String password;
+	
+	private String email;
+	
+	private int enabled;
+	
+	private Authority authority;
+	
+	public enum Authority {
+		ADMIN,
+		USER
+	}
+	
+}
