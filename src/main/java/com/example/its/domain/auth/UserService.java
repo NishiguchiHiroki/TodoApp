@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.example.its.domain.auth.User.Authority;
+
 import lombok.RequiredArgsConstructor;
 
 
@@ -21,7 +24,7 @@ public class UserService {
 	}
 	
 	@PreAuthorize("hasAuthority('ADMIN')")
-	public void create(String username, String password, String authority) {
+	public void create(String username, String password, Authority authority) {
 		var encodePassword = passwordEncoder.encode(password);
 		userRepository.insert(username, encodePassword, authority);
 	}

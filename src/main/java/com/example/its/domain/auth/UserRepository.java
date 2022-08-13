@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import com.example.its.domain.auth.User.Authority;
+
 @Mapper
 public interface UserRepository {
 	
@@ -18,6 +20,6 @@ public interface UserRepository {
 	List<User> findAll();
 	
 	@Insert("insert into users(username, password, authority) values(#{username}, #{password}, #{authority})")
-	void insert(@Param("username") String username, @Param("password") String password, @Param("authority") String authority);
+	void insert(@Param("username") String username, @Param("password") String password, @Param("authority") Authority authority);
 
 }
