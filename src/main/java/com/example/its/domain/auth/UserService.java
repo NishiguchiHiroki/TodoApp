@@ -24,9 +24,10 @@ public class UserService {
 	}
 	
 	@PreAuthorize("hasAuthority('ADMIN')")
-	public void create(String username, String password, Authority authority) {
+	public void create(String username, String password, String authority) {
 		var encodePassword = passwordEncoder.encode(password);
-		userRepository.insert(username, encodePassword, authority);
+		Authority auth = Authority.valueOf(authority);
+		userRepository.insert(username, encodePassword, auth.name());
 	}
 
 }

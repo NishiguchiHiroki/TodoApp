@@ -1,0 +1,11 @@
+
+■JDBCとPostgreSQLの互換性で、Enum型が挿入できない問題：
+・解決法: CREATE CAST (varchar AS authority) WITH INOUT AS IMPLICIT;
+　→この文を実行すると、事前に指定された関数（この場合authority(authorityType)）が呼び出され、varcharがauthority型に変換される。
+　WITH INOUT構文を使用してI/O変換キャストとしてキャスト定義を行うことができます。
+　キャストに AS IMPLICIT オプションを付けると、代入でも、もしくは式の中にあるものでも、すべてのコンテキストで暗黙的にそのキャストを呼び出すように設定できます。
+
+
+
+
+

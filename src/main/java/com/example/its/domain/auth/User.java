@@ -17,12 +17,13 @@ public class User {
 	private String email;
 	
 	private int enabled;
-	
+
 	private Authority authority;
 	
+	@NotBlank
 	public enum Authority {
 		ADMIN,
-		USER
+		USER;
 	}
 	
 }
