@@ -24,10 +24,14 @@ public class UserService {
 	}
 	
 	@PreAuthorize("hasAuthority('ADMIN')")
-	public void create(String username, String password, String authority) {
+	public void create(String username, String email, String password, String authority) {
 		var encodePassword = passwordEncoder.encode(password);
-		Authority auth = Authority.valueOf(authority);
-		userRepository.insert(username, encodePassword, auth.name());
+		try {	
+			Authority auth = Authority.valueOf(authority);
+			userRepository.insert(username, email, encodePassword, auth.name());
+		}catch(IllegalArgumentException e) {
+			throw new IllegalArgumentException("該当する権限はありません。");
+		}
 	}
 
 }

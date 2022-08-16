@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.authorizeRequests()
 				// /loginは認証不要であること
 				.mvcMatchers("/login/**").permitAll()
+				.mvcMatchers("/signup/**").permitAll()
 				.mvcMatchers("/users/**").hasAuthority("ADMIN")
 				// /login以外のアクセスは認証すること
 				.anyRequest().authenticated()

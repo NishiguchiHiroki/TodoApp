@@ -30,6 +30,7 @@ public class UserController {
 	//Get  /user/creationForm
 	@GetMapping("/creationForm")
 	public String showCreationForm(@ModelAttribute UserForm form) {
+		form.setAuthority("ADMIN");
 		return "users/creationForm";
 	}
 	
@@ -39,7 +40,7 @@ public class UserController {
 			return showCreationForm(form);
 		}
 		
-		userService.create(form.getUsername(), form.getPassword(), form.getAuthority() );
+		userService.create(form.getUsername(), form.getEmail(), form.getPassword(), form.getAuthority() );
 		return "redirect:/users";
 	}
 
