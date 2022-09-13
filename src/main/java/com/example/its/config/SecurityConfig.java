@@ -27,7 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.csrf().ignoringAntMatchers("/h2-console/**")
 				.and()
 				.headers().frameOptions().disable();
-				
+		http
+				.authorizeRequests()
+				.and()
+				.oauth2Login();
 		http	
 				.authorizeRequests()
 				// /loginは認証不要であること
@@ -43,6 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		        .passwordParameter("password")
 				// ログイページのURLは/loginであること
 				.loginPage("/login");
+		
+		
 	}
 
 	@Override

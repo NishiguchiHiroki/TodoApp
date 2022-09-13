@@ -33,6 +33,8 @@ dependencies {
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
     testImplementation 'org.springframework.security:spring-security-test'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.1'
+    implementation group: 'org.springframework.security', name: 'spring-security-oauth2-client'
+    implementation group: 'org.springframework.security', name: 'spring-security-oauth2-jose'
   	runtimeOnly 'org.postgresql:postgresql'
 }
 
