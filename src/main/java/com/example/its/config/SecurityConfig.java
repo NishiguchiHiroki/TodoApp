@@ -27,27 +27,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.csrf().ignoringAntMatchers("/h2-console/**")
 				.and()
 				.headers().frameOptions().disable();
-		http
-				.authorizeRequests()
-				.and()
-				.oauth2Login();
 		http	
 				.authorizeRequests()
-				// /loginは認証不要であること
 				.mvcMatchers("/login/**").permitAll()
 				.mvcMatchers("/signup/**").permitAll()
 				.mvcMatchers("/users/**").hasAuthority("ADMIN")
-				// /login以外のアクセスは認証すること
 				.anyRequest().authenticated()
 				.and()
-				// 認証の方式はフォーム認証であること
-				.formLogin()
-				.usernameParameter("email")
-		        .passwordParameter("password")
-				// ログイページのURLは/loginであること
-				.loginPage("/login");
-		
-		
+		        .oauth2Login()
+		        .and()
+		        .formLogin()
+		        .usernameParameter("email")
+		        .passwordParameter("password");
 	}
 
 	@Override

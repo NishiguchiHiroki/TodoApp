@@ -9,6 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class User {
 	
+	public User() {}
 	@NotBlank
 	private String username;
 	@NotBlank
