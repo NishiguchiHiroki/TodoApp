@@ -4,6 +4,7 @@ package com.example.its.web.google;
 import java.util.Optional;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,18 +22,16 @@ public class googleAuthController {
 	private final UserRepository userRepository;
 	
 	@GetMapping("/google")
-	  public String index(@AuthenticationPrincipal OidcUser user, Model model) {
-
+	  public String google(@AuthenticationPrincipal OidcUser user, Model model) {
+		System.out.println(user.getFullName());
 	    
-//	    Optional<User> loginUser = userRepository.findByUsername(user.getEmail());
+	    Optional<User> loginUser = userRepository.findByUsername(user.getEmail());
 	    
-//	    if(loginUser.isPresent()) {
-//	    	return "index";
-//	    }else {
-//	    	return "/login";
-//	    }
-	    
-	    return "index";
+	    if(loginUser.isPresent()) {
+	    	return "index";
+	    }else {
+	    	return "/login";
+	    }
 	    
 	  }
 

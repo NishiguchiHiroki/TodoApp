@@ -35,8 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.anyRequest().authenticated()
 				.and()
 		        .oauth2Login()
+		        .loginPage("/login").permitAll()
 		        .and()
 		        .formLogin()
+		        .loginPage("/login").permitAll()
 		        .usernameParameter("email")
 		        .passwordParameter("password");
 	}

@@ -22,7 +22,16 @@
 		<button type="submit" class="btn btn-primary">ログイン</button>
 	</div>
 </form>
+<table>
+    <tr th:each="clientRegistration : ${@clientRegistrationRepository}">
+      <td>
+      	<div>
+      		<img src="">
+      		<a class="btn btn-primary btn-lg btn-block" th:href="@{/oauth2/authorization/{id}(id=${clientRegistration.registrationId})}">google</a>
+      	</div>
+      </td>
+    </tr>
+  </table>
 
-<button onclick="location.href='http://localhost:8080/login/oauth2/code/google'">Googleでログイン</button>
 </body>
 </html>
